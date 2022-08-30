@@ -16,9 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->is_admin == 'Administrador')
+        if (auth()->check() && auth()->user()->Perfil == 'Administrador')
             return $next($request);
 
-        return redirect('/');
+        return redirect('/404');
     }
 }

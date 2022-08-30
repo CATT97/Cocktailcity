@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/404', function () {
+    return view('404');
+});
+
 Auth::routes();
 
 Route::get('layouts/app', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
