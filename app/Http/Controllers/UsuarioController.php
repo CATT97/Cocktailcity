@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Mockery\Matcher\HasKey;
 
 class UsuarioController extends Controller
 {
@@ -39,7 +41,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('Auth.register');
+        return view('usuarios.create');
     }
 
     /**
@@ -50,7 +52,21 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->TipoDocumento = $request->TipoDocumento;
+        $user->NumeroDocumento = $request->NumeroDocumento;
+        $user->NumeroContacto = $request->NumeroContacto;
+        $user->Genero = $request->Genero;
+        $user->Direccion = $request->Direccion;
+        $user->Barrio = $request->Barrio;
+        $user->Ciudad = $request->Ciudad;
+        $user->Perfil = $request->Perfil;
+        $user->save();
+        $usuarios = User::all();
+        return view('usuarios.index', compact('usuarios'));
     }
 
     /**
