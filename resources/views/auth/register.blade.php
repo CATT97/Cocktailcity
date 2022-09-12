@@ -111,12 +111,11 @@
                             <label for="Genero" class="col-md-4 col-form-label text-md-end">{{ __('Género') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select @error('Genero') is-invalid @enderror@error('Genero') is-invalid @enderror" aria-label="Seleccione su genero" id="Genero" name="Genero">
+                                <select class="form-select @error('Genero') is-invalid @enderror" aria-label="Seleccione su genero" id="Genero" name="Genero">
                                     <option value="Masculino">Masculino</option>
                                     <option value="Femenino">Femenino</option>
                                     <option value="No-binario">No-binario</option>
                                 </select>
-
                                 @error('Genero')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
