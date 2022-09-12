@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Mockery\Matcher\HasKey;
@@ -28,10 +29,13 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $usuarios = User::all();
-        return view('usuarios.index', compact('usuarios'));
+        $busqueda = trim($request->get('busqueda'));
+        $usuarios = User::where('name', 'like', '%' . $busqueda . '%')
+                    ->orWhere('NumeroDocumento','LIKE','%'.$busqueda.'%')
+                    ->get();
+        return view('usuarios.index', compact('usuarios','busqueda'));
     }
 
     /**
@@ -65,8 +69,7 @@ class UsuarioController extends Controller
         $user->Ciudad = $request->Ciudad;
         $user->Perfil = $request->Perfil;
         $user->save();
-        $usuarios = User::all();
-        return view('usuarios.index', compact('usuarios'));
+        return Redirect::route("usuarios.index");
     }
 
     /**
@@ -75,9 +78,9 @@ class UsuarioController extends Controller
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuario $usuario)
+    public function show(User $usuario)
     {
-        //
+        
     }
 
     /**
@@ -119,8 +122,9 @@ class UsuarioController extends Controller
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(User $usuario)
     {
-        //
+        $usuario->delete();
+        return Redirect::route("usuarios.index");
     }
 }

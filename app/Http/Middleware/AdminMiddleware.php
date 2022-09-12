@@ -19,6 +19,6 @@ class AdminMiddleware
         if (auth()->check() && auth()->user()->Perfil == 'Administrador')
             return $next($request);
 
-        return redirect('/404');
+        return redirect('/401');
     }
 }

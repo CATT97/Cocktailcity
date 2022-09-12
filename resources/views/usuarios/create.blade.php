@@ -63,16 +63,12 @@
 
                         <div class="row mb-3">
                             <label for="TipoDocumento" class="col-md-4 col-form-label text-md-end">{{ __('Tipo de documento') }}</label>
-
                             <div class="col-md-6">
-                                <input id="TipoDocumento" type="text" class="form-control @error('TipoDocumento') is-invalid @enderror" name="TipoDocumento" value="{{ old('TipoDocumento') }}" required autocomplete="TipoDocumento">
-
-                                @error('TipoDocumento')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                                <select class="form-select @error('TipoDocumento') is-invalid @enderror" aria-label="Tipo de documento" id="TipoDocumento" name="TipoDocumento">
+                                    <option value="CC">CC</option>
+                                    <option value="CE">CE</option>
+                                    <option value="NIT">NIT</option>
+                                </select>
                         </div>
 
                         <div class="row mb-3">
@@ -107,8 +103,11 @@
                             <label for="Genero" class="col-md-4 col-form-label text-md-end">{{ __('Género') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Genero" type="text" class="form-control @error('Genero') is-invalid @enderror" name="Genero" value="{{ old('Genero') }}" required autocomplete="Genero">
-
+                                <select class="form-select aria-label="Seleccione su genero" id="Genero" name="Genero">
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="No-binario">No-binario</option>
+                                </select>
                                 @error('Genero')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -149,7 +148,10 @@
                             <label for="Ciudad" class="col-md-4 col-form-label text-md-end">{{ __('Ciudad') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Ciudad" type="text" class="form-control @error('Ciudad') is-invalid @enderror" name="Ciudad" value="{{ old('Ciudad') }}" required autocomplete="Ciudad">
+                                <select class="form-select @error('Ciudad') is-invalid @enderror" aria-label="Seleccione su Ciudad" id="Ciudad" name="Ciudad">
+                                    <option value="Manizales">Manizales</option>
+                                    <option value="Villamaria">Villamaria</option>
+                                </select>
 
                                 @error('Ciudad')
                                     <span class="invalid-feedback" role="alert">
@@ -163,7 +165,10 @@
                             <label for="Perfil" class="col-md-4 col-form-label text-md-end">{{ __('Perfil') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Perfil" type="text" class="form-control @error('Perfil') is-invalid @enderror" name="Perfil" value="{{ old('Perfil') }}" required autocomplete="Perfil">
+                                <select class="form-select @error('Perfil') is-invalid @enderror" aria-label="Seleccione un perfil" id="Perfil" name="Perfil">
+                                    <option value="Empleado">Empleado</option>
+                                    <option value="Administrador">Administrador</option>
+                                </select>
 
                                 @error('Perfil')
                                     <span class="invalid-feedback" role="alert">

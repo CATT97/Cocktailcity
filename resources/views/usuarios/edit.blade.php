@@ -44,7 +44,11 @@
                             <label for="TipoDocumento" class="col-md-4 col-form-label text-md-end">{{ __('Tipo de documento') }}</label>
 
                             <div class="col-md-6">
-                                <input id="TipoDocumento" type="text" class="form-control @error('TipoDocumento') is-invalid @enderror" name="TipoDocumento" value="{{ $usuario->TipoDocumento }}" required autocomplete="TipoDocumento">
+                                <select class="form-select @error('TipoDocumento') is-invalid @enderror" aria-label="Tipo de documento" id="TipoDocumento" name="TipoDocumento">
+                                    <option value="CC">CC</option>
+                                    <option value="CE">CE</option>
+                                    <option value="NIT">NIT</option>
+                                </select>
 
                                 @error('TipoDocumento')
                                     <span class="invalid-feedback" role="alert">
@@ -86,7 +90,11 @@
                             <label for="Genero" class="col-md-4 col-form-label text-md-end">{{ __('Género') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Genero" type="text" class="form-control @error('Genero') is-invalid @enderror" name="Genero" value="{{ $usuario->Genero }}" required autocomplete="Genero">
+                                <select class="form-select @error('Genero') is-invalid @enderror" aria-label="Seleccione su genero" id="Genero" name="Genero">
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="No-binario">No-binario</option>
+                                </select>
 
                                 @error('Genero')
                                     <span class="invalid-feedback" role="alert">
@@ -128,7 +136,10 @@
                             <label for="Ciudad" class="col-md-4 col-form-label text-md-end">{{ __('Ciudad') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Ciudad" type="text" class="form-control @error('Ciudad') is-invalid @enderror" name="Ciudad" value="{{ $usuario->Ciudad }}" required autocomplete="Ciudad">
+                                <select class="form-select @error('Ciudad') is-invalid @enderror" aria-label="Seleccione su Ciudad" id="Ciudad" name="Ciudad">
+                                    <option value="Manizales">Manizales</option>
+                                    <option value="Villamaria">Villamaria</option>
+                                </select>
 
                                 @error('Ciudad')
                                     <span class="invalid-feedback" role="alert">
