@@ -41,7 +41,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <table class="table table-success table-striped">
+                                        <table class="table table-striped">
                                             <tbody>
                                                 <tr>
                                                     <th>Nombre</th>
@@ -98,7 +98,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">{{ $usuario->Perfil }}</h6>
                     <p class="card-text">{{ $usuario->email }}</p>
                     <p class="card-text">{{ $usuario->NumeroContacto }}</p>
-                    <div class="text-center d-flex">
+                    <div class="justify-content-center d-flex">
                         <a href="{{ route('usuarios.edit', $usuario) }}" type="button" class="btn btn-warning mx-2">
                             Editar
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
