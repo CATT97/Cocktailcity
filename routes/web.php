@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,4 @@ Auth::routes();
 
 Route::get('layouts/app', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/usuarios',UsuarioController::class);
+Route::resource('/productos',ProductosController::class);
