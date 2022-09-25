@@ -25,7 +25,7 @@ class PrecioSizeController extends Controller
      */
     public function create()
     {
-        return view('productos/precioSize.create');
+        return view('precioSize.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class PrecioSizeController extends Controller
      */
     public function edit(PrecioSize $precioSize)
     {
-        return view('productos/precioSize.edit', compact('precioSize'));
+        //
     }
 
     /**

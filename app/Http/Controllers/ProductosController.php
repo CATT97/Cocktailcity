@@ -6,6 +6,7 @@ use App\Models\PrecioSize;
 use App\Models\Productos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Expr\Empty_;
 
 class ProductosController extends Controller
 {
@@ -99,10 +100,12 @@ class ProductosController extends Controller
     {
         $producto->Nombre = $request->name;
         $producto->Descripcion = $request->descripcion;
-        $request->validate([
-            'imagen' => 'image|max:2048'
-        ]);
-        $producto->Imagen = $request->imagen->store('productos', 'images');
+        if($request->imagen){
+            $request->validate([
+                'imagen' => 'image|max:2048'
+            ]);
+            $producto->Imagen = $request->imagen->store('productos', 'images');
+        };
         $producto->save();
         return Redirect::route("productos.index");
     }

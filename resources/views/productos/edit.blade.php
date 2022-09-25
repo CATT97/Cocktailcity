@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     <input id="imagen" type="file"
                                         class="form-control @error('imagen') is-invalid @enderror" name="imagen"
-                                        accept="image/*" onchange="mostrarImagen()" required>
+                                        accept="image/*" onchange="mostrarImagen()">
 
                                     <img src="/images/{{ $producto->Imagen }}" alt="archivoSeleccionado" id="archivoSeleccionado"
                                         onerror="this.style.display = 'none'" class="mw-100 my-3">

@@ -115,7 +115,6 @@
                     <tr>
                         <th>Tamaño</th>
                         <th>Precio</th>
-                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,7 +122,6 @@
                         <tr>
                             <td>{{ $precioSize->Size }}</td>
                             <td>{{ $precioSize->Precio }}</td>
-                            <td><a type="button" class="btn btn-warning" href="{{ route('precios-y-tamanos.edit', $precioSize) }}">Editar</a></td>
                         </tr>
                     @endforeach
                 </tbody>

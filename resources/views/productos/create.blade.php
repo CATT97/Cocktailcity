@@ -105,7 +105,6 @@
             let verimagen = document.getElementById('archivoSeleccionado');
             verimagen.src = url;
             verimagen.removeAttribute('style');
-            console.log(url);
         }
     </script>
 @endsection
