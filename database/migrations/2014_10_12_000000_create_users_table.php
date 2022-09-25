@@ -29,6 +29,7 @@ return new class extends Migration
             $table->String('Barrio');
             $table->String('Ciudad');
             $table->String('Perfil')->default('Cliente');
+            $table->boolean('Activo')->default(TRUE);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Usuario;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Mockery\Matcher\HasKey;
 
 class UsuarioController extends Controller
 {
@@ -33,7 +30,11 @@ class UsuarioController extends Controller
     {
         $busqueda = trim($request->get('busqueda'));
         $usuarios = User::where('name', 'like', '%' . $busqueda . '%')
+                    ->where('id', '>', 1)
+                    ->where('Activo', '=', TRUE)
                     ->orWhere('NumeroDocumento','LIKE','%'.$busqueda.'%')
+                    ->where('id', '>', 1)
+                    ->where('Activo', '=', TRUE)
                     ->get();
         return view('usuarios.index', compact('usuarios','busqueda'));
     }
@@ -68,6 +69,7 @@ class UsuarioController extends Controller
         $user->Barrio = $request->Barrio;
         $user->Ciudad = $request->Ciudad;
         $user->Perfil = $request->Perfil;
+        
         $user->save();
         return Redirect::route("usuarios.index");
     }
@@ -124,7 +126,8 @@ class UsuarioController extends Controller
      */
     public function destroy(User $usuario)
     {
-        $usuario->delete();
+        $usuario->Activo = FALSE;
+        $usuario->save();
         return Redirect::route("usuarios.index");
     }
 }

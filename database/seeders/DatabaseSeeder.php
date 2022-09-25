@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             'Direccion' => 'calle 15b # 9 - 35',
             'Barrio' => 'La ceniza',
             'Ciudad' => 'Manizales',
-            'Perfil' => 'Administrador'
+            'Perfil' => 'Administrador',
+            'Activo' => TRUE
         ]);
     }
 }

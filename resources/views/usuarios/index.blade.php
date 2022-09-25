@@ -7,7 +7,8 @@
     </div>
     <div class="d-flex justify-content-center">
         <form action="{{ route('usuarios.index') }}" method="get" class="d-flex">
-            <input type="text" class="form-control mx-3" name="busqueda" value="{{ $busqueda }}">
+            <label for="busqueda" class="col-form-label fs-5">Filtro</label>
+            <input type="text" class="form-control mx-3" name="busqueda" value="{{ $busqueda }}" placeholder="Nombre o Documento">
             <input type="submit" class="btn btn-success" value="Buscar">
         </form>
         <form action="{{ route('usuarios.index') }}" method="get" class="d-flex">

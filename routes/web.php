@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrecioSizeController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
@@ -29,3 +30,5 @@ Auth::routes();
 Route::get('layouts/app', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/usuarios',UsuarioController::class);
 Route::resource('/productos',ProductosController::class);
+Route::put('/productos/{producto}', [App\Http\Controllers\ProductosController::class, 'agregarInventario'])->name('productos.agregarInventario');
+Route::resource('/productos/precios-y-tamanos',PrecioSizeController::class);

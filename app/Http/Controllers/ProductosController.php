@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PrecioSize;
 use App\Models\Productos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
 {
@@ -26,10 +26,13 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Productos::all();
-        return view('productos.index', compact('productos'));
+        $busqueda = trim($request->get('busqueda'));
+        $productos = Productos::where('Nombre', 'like', '%' . $busqueda . '%')
+                    ->get();
+        $precioSizes = PrecioSize::where('Activo', '=', TRUE)->get();
+        return view('productos.index', compact('productos','busqueda','precioSizes'));
     }
 
     /**
@@ -39,7 +42,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
+        return view('productos.create');
     }
 
     /**
@@ -58,6 +61,7 @@ class ProductosController extends Controller
             'imagen' => 'image|max:2048'
         ]);
         $producto->Imagen = $request->imagen->store('productos', 'images');
+        $producto->Activo = TRUE;
         $producto->save();
         return Redirect::route("productos.index");
     }
@@ -79,9 +83,9 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Productos $productos)
+    public function edit(Productos $producto)
     {
-        //
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -91,9 +95,22 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Productos $productos)
+    public function update(Request $request, Productos $producto)
     {
-        //
+        $producto->Nombre = $request->name;
+        $producto->Descripcion = $request->descripcion;
+        $request->validate([
+            'imagen' => 'image|max:2048'
+        ]);
+        $producto->Imagen = $request->imagen->store('productos', 'images');
+        $producto->save();
+        return Redirect::route("productos.index");
+    }
+
+    public function agregarInventario(Request $request, Productos $producto){
+        $producto->Stock = $producto->Stock + $request->stock;
+        $producto->save();
+        return Redirect::route("productos.index");
     }
 
     /**

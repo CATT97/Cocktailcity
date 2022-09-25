@@ -16,3 +16,17 @@ html,body{
 .card{
     color: #000000;
 }
+
+.texto-oculto p{
+    display: none;
+}
+
+.texto-oculto:hover p{
+    display: contents;
+}
+
+.botonPrecioSize{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}

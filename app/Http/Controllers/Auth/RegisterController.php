@@ -83,6 +83,7 @@ class RegisterController extends Controller
             'Barrio' => $data['Barrio'],
             'Ciudad' => $data['Ciudad'],
             'Perfil' => 'Cliente',
+            'Activo' => TRUE,
         ]);
     }
 }
