@@ -63,7 +63,7 @@ class PrecioSizeController extends Controller
      */
     public function edit(PrecioSize $precioSize)
     {
-        //
+        return view('precioSize.edit', compact('precioSize'));
     }
 
     /**

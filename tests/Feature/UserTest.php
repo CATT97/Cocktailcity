@@ -16,9 +16,9 @@ it('Prueba de registro', function () {
         'Direccion' => 'calle 15b # 9 - 35',
         'Barrio' => 'La ceniza',
         'Ciudad' => 'Manizales',
-        'Perfil' => 'Administrador',
+        'Perfil' => 'Cliente',
         'Activo' => TRUE
-    ]))->get('/usuarios');
+    ]))->get('/');
 
     $response ->assertStatus(200);
 });
