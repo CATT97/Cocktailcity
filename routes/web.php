@@ -3,6 +3,8 @@
 use App\Http\Controllers\PrecioController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\Precio;
+use App\Models\Productos;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $productos = Productos::all();
+    $precios = Precio::all();
+    return view('welcome',compact('productos','precios'));
 });
 
 Route::get('/401', function () {

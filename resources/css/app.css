@@ -4,11 +4,8 @@ html,body{
 }
 
 .banner-home{
-    background-image: url(https://thumbs.dreamstime.com/b/conjunto-de-varios-c%C3%B3cteles-con-fondo-negro-variados-agitador-sobre-188649840.jpg);
-    background-repeat:no-repeat;
-    background-color:#000000;
-    background-size: contain;
-    background-position: center;
+    display: flex;
+    justify-content: center;
     height: 300px;
     width: 100%;
 }
@@ -29,4 +26,20 @@ html,body{
     position: fixed;
     bottom: 15px;
     right: 15px;
+}
+
+.productos{
+    border-top: 5px solid #2ED30D !important;
+    border-left: 5px solid #2ED30D !important;
+    border-right: 5px solid #750BE7 !important;
+    border-bottom: 5px solid #750BE7 !important;
+    transition: .7s;
+}
+
+.productos:hover{
+    border-top: 5px solid #750BE7 !important;
+    border-left: 5px solid #750BE7 !important;
+    border-right: 5px solid #2ED30D !important;
+    border-bottom: 5px solid #2ED30D !important;
+    transform: scale(1.2);
 }
