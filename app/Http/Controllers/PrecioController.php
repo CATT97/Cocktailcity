@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PrecioSize;
+use App\Models\Precio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class PrecioSizeController extends Controller
+class PrecioController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +37,7 @@ class PrecioSizeController extends Controller
      */
     public function create()
     {
-        return view('precioSize.create');
+        return view('precios.create');
     }
 
     /**
@@ -36,21 +48,21 @@ class PrecioSizeController extends Controller
      */
     public function store(Request $request)
     {
-        $precioSize = new PrecioSize();
-        $precioSize->Size = $request->size;
-        $precioSize->Precio = $request->precio;
-        $precioSize->Activo = TRUE;
-        $precioSize->save();
+        $precio = new Precio();
+        $precio->Size = $request->size;
+        $precio->Precio = $request->precio;
+        $precio->Activo = TRUE;
+        $precio->save();
         return Redirect::route("productos.index");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PrecioSize  $precioSize
+     * @param  \App\Models\Precio  $precio
      * @return \Illuminate\Http\Response
      */
-    public function show(PrecioSize $precioSize)
+    public function show(Precio $precio)
     {
         //
     }
@@ -58,33 +70,35 @@ class PrecioSizeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PrecioSize  $precioSize
+     * @param  \App\Models\Precio  $precio
      * @return \Illuminate\Http\Response
      */
-    public function edit(PrecioSize $precioSize)
+    public function edit(Precio $precio)
     {
-        return view('precioSize.edit', compact('precioSize'));
+        return view('precios.edit', compact('precio'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PrecioSize  $precioSize
+     * @param  \App\Models\Precio  $precio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PrecioSize $precioSize)
+    public function update(Request $request, Precio $precio)
     {
-        //
+        $precio->Precio = $request->precio;
+        $precio->save();
+        return Redirect::route("productos.index");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PrecioSize  $precioSize
+     * @param  \App\Models\Precio  $precio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PrecioSize $precioSize)
+    public function destroy(Precio $precio)
     {
         //
     }

@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $precioSize->Size }}</td>
                             <td>{{ $precioSize->Precio }}</td>
-                            <td><a href="{{ route('precios-y-tamanos.edit', $precioSize) }}" type="button" class="btn btn-warning mx-2">Editar</a></td>
+                            <td><a href="{{ route('precios.edit', $precioSize) }}" type="button" class="btn btn-warning mx-2">Editar</a></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -33,7 +33,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <a type="button" class="btn btn-primary" href="{{ route('precios-y-tamanos.create') }}">Añadir</a>
+                <a type="button" class="btn btn-primary" href="{{ route('precios.create') }}">Añadir</a>
             </div>
         </div>
     </div>

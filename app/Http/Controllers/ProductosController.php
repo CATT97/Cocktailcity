@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PrecioSize;
+use App\Models\Precio;
 use App\Models\Productos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use PhpParser\Node\Expr\Empty_;
 
 class ProductosController extends Controller
 {
@@ -32,7 +31,7 @@ class ProductosController extends Controller
         $busqueda = trim($request->get('busqueda'));
         $productos = Productos::where('Nombre', 'like', '%' . $busqueda . '%')
                     ->get();
-        $precioSizes = PrecioSize::where('Activo', '=', TRUE)->get();
+        $precioSizes = Precio::where('Activo', '=', TRUE)->get();
         return view('productos.index', compact('productos','busqueda','precioSizes'));
     }
 
