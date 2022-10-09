@@ -43,3 +43,9 @@ html,body{
     border-bottom: 5px solid #2ED30D !important;
     transform: scale(1.2);
 }
+
+.carrito{
+    position: fixed !important;
+    right: 0;
+    z-index: 1;
+}
