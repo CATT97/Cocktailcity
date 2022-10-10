@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $productos = Productos::all();
-    $precios = Precio::all();
+    $precios = Precio::all()->sortBy('Size');
     return view('welcome',compact('productos','precios'));
 });
 

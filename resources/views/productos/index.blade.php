@@ -95,6 +95,9 @@
                 </div>
             </div>
         @endforeach
+        <div class="d-flex justify-content-center">
+            {{ $productos->links() }}
+        </div>
     </div>
     @include('productos.precioslist')
 </div>

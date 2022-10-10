@@ -35,7 +35,7 @@ class UsuarioController extends Controller
                     ->orWhere('NumeroDocumento','LIKE','%'.$busqueda.'%')
                     ->where('id', '>', 1)
                     ->where('Activo', '=', TRUE)
-                    ->get();
+                    ->paginate(10);
         return view('usuarios.index', compact('usuarios','busqueda'));
     }
 

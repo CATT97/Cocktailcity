@@ -30,7 +30,7 @@ class ProductosController extends Controller
     {
         $busqueda = trim($request->get('busqueda'));
         $productos = Productos::where('Nombre', 'like', '%' . $busqueda . '%')
-                    ->get();
+                    ->paginate(10);
         $precioSizes = Precio::where('Activo', '=', TRUE)->get();
         return view('productos.index', compact('productos','busqueda','precioSizes'));
     }

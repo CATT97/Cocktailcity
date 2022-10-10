@@ -79,5 +79,8 @@
                 </div>
             </div>
         @endforeach
+        <div class="d-flex justify-content-center">
+            {{ $usuarios->links() }}
+        </div>
     </div>
 @endsection

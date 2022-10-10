@@ -53,6 +53,7 @@ class CartController extends Controller
     Cart::add(array(
         'id' => $request->id, 
         'name' => $request->name,
+        'size' => Precio::find($request->price)->Size,
         'price' =>$request->price,
         'quantity' => $request->quantity,
     ));
