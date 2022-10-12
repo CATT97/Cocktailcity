@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\PrecioController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
@@ -38,3 +39,4 @@ Route::resource('/productos',ProductosController::class);
 Route::put('/agregar-inventario/{producto}', [App\Http\Controllers\ProductosController::class, 'agregarInventario'])->name('productos.agregarInventario');
 Route::resource('/precios',PrecioController::class);
 Route::resource('/cart', CartController::class);
+Route::resource('/compras', CompraController::class);

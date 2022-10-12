@@ -26,7 +26,7 @@
                             <label for="price">Tamaño y precio</label>
                             <select name="price" id="price">
                             @foreach ($precios as $precio)
-                                <option value="{{ $precio->Precio }}">{{ $precio->Size }} onz - {{ $precio->Precio }}</option>
+                                <option value="{{ $precio->id }}">{{ $precio->Size }} onz - {{ $precio->Precio }}</option>
                             @endforeach
                             </select>
                         </div>
