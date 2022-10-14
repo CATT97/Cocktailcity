@@ -49,3 +49,7 @@ html,body{
     right: 0;
     z-index: 1;
 }
+
+.imagen-compra{
+    width: 200px;
+}

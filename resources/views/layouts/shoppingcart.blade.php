@@ -60,12 +60,13 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="text-center">
+                    <a href="{{ route('compras.index') }}" class="btn btn-success">Finalizar compra</a>
+                </div>
             @else
-                <h1>Carrito Vacio</h1>
+                <h1 class="text-black">Carrito Vacio</h1>
             @endif
-            <div class="text-center">
-                <a href="{{ route('compras.index') }}" class="btn btn-success">Finalizar compra</a>
-            </div>
         </div>
     </div>
 

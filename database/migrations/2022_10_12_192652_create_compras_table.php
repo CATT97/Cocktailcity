@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
             $table->string('FechaHora');
-            $table->string('ValorTotal');
+            $table->float('ValorTotal');
             $table->foreignId('User_id')->constrained()->onUpdate('cascade');
             $table->String('Estado');
             $table->string('MedioCompra');

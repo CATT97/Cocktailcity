@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compra;
+use App\Models\Productos;
+use App\Models\ProductosCompra;
+use App\Models\User;
+use Darryldecode\Cart\Facades\CartFacade;
 use Illuminate\Http\Request;
 
 class CompraController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,8 @@ class CompraController extends Controller
      */
     public function index()
     {
-        return view('compras.index');
+        $productos = Productos::all();
+        return view('compras.index', compact('productos'));
     }
 
     /**
@@ -24,7 +39,29 @@ class CompraController extends Controller
      */
     public function create()
     {
-        //
+        $compra = new Compra();
+        $compra->FechaHora = now();
+        $compra->ValorTotal = CartFacade::getTotal();
+        $compra->User_id = auth()->id();
+        if (User::find(auth()->id())->Perfil == 'Cliente') {
+            $compra->Estado = 'Pedido Generado';
+            $compra->MedioCompra = 'Web';
+        }else{
+            $compra->Estado = 'Finalizado';
+            $compra->MedioCompra = 'Local';
+        }
+        $compra->save();
+        $idCompra = Compra::latest('id')->first()->id;
+        foreach (CartFacade::getContent() as $item) {
+            $productos = new ProductosCompra();
+            $productos->Compra_id = $idCompra;
+            $productos->Producto_id = $item->idproducto;
+            $productos->Cantidad = $item->quantity;
+            $productos->Size = $item->size;
+            $productos->PrecioCompra = $item->price;
+            $productos->save();
+        }
+        return view('compras.posventa');
     }
 
     /**
@@ -33,7 +70,7 @@ class CompraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
