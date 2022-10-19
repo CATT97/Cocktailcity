@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\CompraUsuarioController;
 use App\Http\Controllers\PrecioController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
@@ -40,3 +41,4 @@ Route::put('/agregar-inventario/{producto}', [App\Http\Controllers\ProductosCont
 Route::resource('/precios',PrecioController::class);
 Route::resource('/cart', CartController::class);
 Route::resource('/compras', CompraController::class);
+Route::resource('/comprasusuario', CompraUsuarioController::class);

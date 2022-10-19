@@ -6,8 +6,10 @@ use App\Models\Compra;
 use App\Models\Productos;
 use App\Models\ProductosCompra;
 use App\Models\User;
+use Darryldecode\Cart\Cart;
 use Darryldecode\Cart\Facades\CartFacade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CompraController extends Controller
 {
@@ -61,7 +63,8 @@ class CompraController extends Controller
             $productos->PrecioCompra = $item->price;
             $productos->save();
         }
-        return view('compras.posventa');
+        CartFacade::clear();
+        return Redirect::route("compras.show", Compra::find($idCompra));
     }
 
     /**
@@ -83,7 +86,7 @@ class CompraController extends Controller
      */
     public function show(Compra $compra)
     {
-        //
+        return view('compras.show', compact('compra'));
     }
 
     /**
