@@ -28,4 +28,8 @@
     </tbody>
 </table>
 
+<div class="d-flex justify-content-center">
+    {{ $compras->links() }}
+</div>
+
 @endsection

@@ -53,7 +53,8 @@ class CompraController extends Controller
             $compra->MedioCompra = 'Local';
         }
         $compra->save();
-        $idCompra = Compra::latest('id')->first()->id;
+        $idCompra = Compra::latest('id')->first()->id
+        ->where('User_id', '=', auth()->id());
         foreach (CartFacade::getContent() as $item) {
             $productos = new ProductosCompra();
             $productos->Compra_id = $idCompra;
