@@ -50,6 +50,9 @@
                     <th colspan="6" class="text-end">TOTAL</th>
                     <td>{{ Cart::getTotal() }}</td>
                 </tr>
+                <tr>
+                    <th colspan="8" class="text-center fs-3">Datos de envio</th>
+                </tr>
         </tbody>
     </table>    
     </div>

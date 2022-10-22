@@ -6,7 +6,6 @@ use App\Models\Compra;
 use App\Models\Productos;
 use App\Models\ProductosCompra;
 use App\Models\User;
-use Darryldecode\Cart\Cart;
 use Darryldecode\Cart\Facades\CartFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -87,7 +86,9 @@ class CompraController extends Controller
      */
     public function show(Compra $compra)
     {
-        return view('compras.show', compact('compra'));
+        $productoscompras = ProductosCompra::where('Compra_id', '=', $compra->id)->get();
+        $productos = Productos::all();
+        return view('compras.show', compact('compra', 'productoscompras', 'productos'));
     }
 
     /**
