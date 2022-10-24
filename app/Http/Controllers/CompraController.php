@@ -86,9 +86,10 @@ class CompraController extends Controller
      */
     public function show(Compra $compra)
     {
+        $usuario = User::find($compra->User_id);
         $productoscompras = ProductosCompra::where('Compra_id', '=', $compra->id)->get();
         $productos = Productos::all();
-        return view('compras.show', compact('compra', 'productoscompras', 'productos'));
+        return view('compras.show', compact('compra', 'productoscompras', 'productos', 'usuario'));
     }
 
     /**

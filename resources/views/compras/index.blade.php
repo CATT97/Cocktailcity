@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (Cart::getTotal() != 0)
     <div class="text-center my-5">
         <h1>Detalles de la compra</h1>
     </div>
@@ -61,5 +62,12 @@
     </div>
     <script>
         document.getElementsByClassName('carrito')[0].style.display = 'none';
-    </script>
+    </script>        
+    @else
+    <div class="text-center">
+        <h1  class="my-5">Su carrito actualmente esta vacio</h1>
+        <a class="btn btn-primary" href="{{url('/')}}">Agrege productos aquí</a>
+    </div>
+       
+    @endif
 @endsection

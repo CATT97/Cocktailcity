@@ -9,7 +9,6 @@
         <tr>
             <th>Estado:</th>
             <td>{{ $compra->Estado }}</td>
-
         </tr>
         <tr>
             <th>Fecha:</th>
@@ -46,13 +45,40 @@
         <tr>
             <th colspan="4"></th>
             <th>Total</th>
-            <td>{{ $compra->ValorTotal}}</td>
+            <td>{{ $compra->ValorTotal }}</td>
         </tr>
     </table>
-
-
-
-
 </div>
+
+@if ($compra->MedioCompra == 'Web')
+    <h1 class="text-center my-3">Detalles del Domicilio</h1>
+    <hr>
+    <div class="my-3 text-center d-flex justify-content-center">
+        <table class="card table table-light w-auto">
+            <tbody>
+                <tr>
+                    <th>Nombre del cliente:</th>
+                    <td>{{ $usuario->name }}</td>
+                </tr>
+                <tr>
+                    <th>Celular:</th>
+                    <td>{{ $usuario->NumeroContacto }}</td>
+                </tr>
+                <tr>
+                    <th>Correo:</th>
+                    <td>{{ $usuario->email }}</td>
+                </tr>
+                <tr>
+                    <th>Dirección:</th>
+                    <td>{{ $usuario->Direccion }} {{ $usuario->Barrio }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <a href="{{ url('comprasusuario.index') }}" class="btn btn-primary">Volver</a>
+    </div>
+@endif
 
 @endsection
