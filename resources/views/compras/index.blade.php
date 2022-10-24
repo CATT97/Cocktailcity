@@ -18,7 +18,7 @@
                 <tr>
                     <td class="imagen-compra">
                         @foreach ($productos as $producto)
-                            @if ($item->idproducto == $producto->id)
+                            @if (explode('s',$item->id)[0] == $producto->id)
                                 <img src="/images/{{ $producto->Imagen }}" alt="{{ $producto->Nombre }}" class="w-100">
                             @endif
                         @endforeach
@@ -28,19 +28,19 @@
                     </td>
                     <td>
                         @foreach ($productos as $producto)
-                            @if ($item->idproducto == $producto->id)
+                            @if (explode('s',$item->id)[0] == $producto->id)
                                 {{ $producto->Descripcion }}
                             @endif
                         @endforeach
                     </td>
                     <td>
-                        {{ $item->size }} onz
+                        {{ explode('s',$item->id)[1] }} onz
                     </td>
                     <td>
                         ${{ $item->price }}
                     </td>
                     <td>
-                        {{ $item->quantity }}
+                        {{ $item->quantity }} uds
                     </td>
                     <td>
                         {{ $item->price * $item->quantity }}

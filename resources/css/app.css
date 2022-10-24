@@ -1,6 +1,7 @@
 html,body{
     background-color: black !important;
     color: #ffffff !important;
+    overflow-x: hidden;
 }
 
 .banner-home{

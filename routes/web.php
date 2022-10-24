@@ -42,3 +42,5 @@ Route::resource('/precios',PrecioController::class);
 Route::resource('/cart', CartController::class);
 Route::resource('/compras', CompraController::class);
 Route::resource('/comprasusuario', CompraUsuarioController::class);
+Route::get('/ventas', [App\Http\Controllers\ProductosController::class, 'ventas'])->name('compras.ventas');
+Route::put('/ventas/{item}', [App\Http\Controllers\ProductosController::class, 'cambiarestado'])->name('compras.cambiarestado');

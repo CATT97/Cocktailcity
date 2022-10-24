@@ -33,15 +33,20 @@
                     @guest
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('comprasusuario.index') }}">{{ __('Compras') }}</a>
+                            <a class="nav-link" href="{{ route('comprasusuario.index') }}">{{ __('Mis Compras') }}</a>
                         </li>
                     @endguest
-                    @can('view-admin')
+                    @can('view-employee')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('usuarios.index') }}">{{ __('Usuarios') }}</a>
+                            <a class="nav-link" href="{{ route('compras.ventas') }}">{{ __('Ventas') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('productos.index') }}">{{ __('Productos') }}</a>
+                        </li>
+                    @endcan
+                    @can('view-admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('usuarios.index') }}">{{ __('Usuarios') }}</a>
                         </li>
                     @endcan
                     </ul>

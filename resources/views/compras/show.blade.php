@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <h1 class="text-center my-3">Detalles de la compra</h1>
 <hr>
 <div class="container card my-3">
@@ -76,9 +75,9 @@
         </table>
     </div>
 
-    <div class="text-center">
-        <a href="{{ url('comprasusuario.index') }}" class="btn btn-primary">Volver</a>
-    </div>
 @endif
+{{-- <div class="text-center">
+    <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
+</div> --}}
 
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compra;
 use App\Models\Precio;
 use App\Models\Productos;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ProductosController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('employee');
     }
 
     /**
@@ -124,5 +125,18 @@ class ProductosController extends Controller
     public function destroy(Productos $productos)
     {
         //
+    }
+
+    public function ventas(Request $request){
+        $filtro = trim($request->get('filtro'));
+        $ventas = Compra::where('Estado', 'like', '%' . $filtro . '%')
+                    ->paginate(10);
+        return view('compras.ventas',compact('ventas', 'filtro'));
+    }
+
+    public function cambiarestado(Request $request, Compra $item){
+        $item->Estado =  $request->estado;
+        $item->save();
+        return Redirect::route("compras.ventas");
     }
 }

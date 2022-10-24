@@ -16,9 +16,7 @@
                         <tr>
                             <th sc ope="col">Accion</th>
                             <th sc ope="col">#ID</th>
-                            <th sc ope="col">Id producto</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Tamaño</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Cantidad</th>
                         </tr>
@@ -34,9 +32,7 @@
                                     </form>
                                 </th>
                                 <th scope="row">{{ $item->id }}</th>
-                                <th scope="row">{{ $item->idproducto }}</th>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->size }}</td>
                                 <td>{{ $item->price }}</td>
                                 <td>{{ $item->quantity }}</td>
                             </tr>

@@ -9,6 +9,7 @@ use App\Models\User;
 use Darryldecode\Cart\Facades\CartFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class CompraController extends Controller
 {
@@ -52,14 +53,14 @@ class CompraController extends Controller
             $compra->MedioCompra = 'Local';
         }
         $compra->save();
-        $idCompra = Compra::latest('id')->first()->id
-        ->where('User_id', '=', auth()->id());
+        $idCompra = Compra::where('User_id', '=', auth()->id())
+        ->latest('id')->first()->id;
         foreach (CartFacade::getContent() as $item) {
             $productos = new ProductosCompra();
             $productos->Compra_id = $idCompra;
-            $productos->Producto_id = $item->idproducto;
+            $productos->Producto_id = explode('s',$item->id)[0];
             $productos->Cantidad = $item->quantity;
-            $productos->Size = $item->size;
+            $productos->Size = explode('s',$item->id)[1];
             $productos->PrecioCompra = $item->price;
             $productos->save();
         }

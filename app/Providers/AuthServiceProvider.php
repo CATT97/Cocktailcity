@@ -32,6 +32,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->Perfil == 'Administrador';
         });
 
+        Gate::define('view-employee', function ($user) {
+            return $user->Perfil == 'Administrador' or $user->Perfil == 'Empleado';
+        });
+
         Paginator::useBootstrapFour();
     }
 }
