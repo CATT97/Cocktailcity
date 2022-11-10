@@ -24,9 +24,9 @@
                         <p class="card-subtitle mb-2 text-muted px-3">{{ $producto->Descripcion }}</p>
                         <div class="form-group">
                             <label for="price">Tamaño y precio</label>
-                            <select name="price" id="price">
+                            <select name="price" id="price" class="form-select">
                             @foreach ($precios as $precio)
-                                <option value="{{ $precio->id }}">{{ $precio->Size }} onz - {{ $precio->Precio }}</option>
+                                <option value="{{ $precio->id }}">{{ $precio->Size }} onz - ${{ $precio->Precio }}</option>
                             @endforeach
                             </select>
                         </div>
@@ -40,7 +40,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                        <button type="submit" class="btn btn-primary mt-2">Agregar al carrito</button>
                     </form>
                 </div>
             </div>

@@ -60,6 +60,9 @@ class UsuarioController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $request->validate([
+            'password' => 'required|confirmed|min:6'
+        ]);
         $user->password = Hash::make($request->password);
         $user->TipoDocumento = $request->TipoDocumento;
         $user->NumeroDocumento = $request->NumeroDocumento;
