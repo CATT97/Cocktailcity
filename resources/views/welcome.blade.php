@@ -32,7 +32,8 @@
                         </div>
                         <div class="form-group">
                             <label for="quantity">CANTIDAD</label>
-                            <input type="text" name="quantity" class="form-control @error('quantity') is-invalid @enderror" id="quantity" required>
+                            <input type="number" min=1 max={{$producto->Stock-5}} name="quantity" class="form-control @error('quantity') is-invalid @enderror" id="quantity" required>
+                            <label class="float-end"> Disponible: {{$producto->Stock-5}}</label>
 
                             @error('quantity')
                                 <span class="invalid-feedback" role="alert">

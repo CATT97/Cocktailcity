@@ -51,6 +51,7 @@ class CartController extends Controller
     public function store(Request $request, Productos $producto)
 {
     $precios = Precio::find($request->price);
+    
     Cart::add(array(
         'id' => $request->id.'s'.$precios->Size,
         'name' => $request->name,
