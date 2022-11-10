@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron m-5 banner-home">
-        <img src="https://thumbs.dreamstime.com/b/conjunto-de-varios-c%C3%B3cteles-con-fondo-negro-variados-agitador-sobre-188649840.jpg"
+        <img src="/images/banner.jpeg"
             alt="banner">
     </div>
 
