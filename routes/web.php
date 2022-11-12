@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\Precio;
 use App\Models\Productos;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,7 @@ Route::get('/', function () {
 });
 
 Route::get('/401', function () {
-    return view('401');
+    return view('errors.401');
 });
 
 Auth::routes();
@@ -44,3 +45,11 @@ Route::resource('/compras', CompraController::class);
 Route::resource('/comprasusuario', CompraUsuarioController::class);
 Route::get('/ventas', [App\Http\Controllers\ProductosController::class, 'ventas'])->name('compras.ventas');
 Route::put('/ventas/{item}', [App\Http\Controllers\ProductosController::class, 'cambiarestado'])->name('compras.cambiarestado');
+
+Route::get('/perfil/{usuario}', function (User $usuario) {
+    return view('usuarios.perfil', compact('usuario'));
+})->name('perfil');
+Route::get('/perfil/editar/{usuario}', function (User $usuario) {
+    return view('usuarios.editarperfil', compact('usuario'));
+});
+Route::put('/perfil/actualizar/{usuario}', [App\Http\Controllers\PerfilControler::class, 'update'])->name('perfil.update');

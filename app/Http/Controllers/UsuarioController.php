@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Direccion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -67,12 +68,7 @@ class UsuarioController extends Controller
         $user->TipoDocumento = $request->TipoDocumento;
         $user->NumeroDocumento = $request->NumeroDocumento;
         $user->NumeroContacto = $request->NumeroContacto;
-        $user->Genero = $request->Genero;
-        $user->Direccion = $request->Direccion;
-        $user->Barrio = $request->Barrio;
-        $user->Ciudad = $request->Ciudad;
         $user->Perfil = $request->Perfil;
-        
         $user->save();
         return Redirect::route("usuarios.index");
     }
@@ -112,11 +108,7 @@ class UsuarioController extends Controller
         $usuario->email=$request->email;
         $usuario->TipoDocumento=$request->TipoDocumento;
         $usuario->NumeroDocumento=$request->NumeroDocumento;
-        $usuario->Genero=$request->Genero;
         $usuario->NumeroContacto=$request->NumeroContacto;
-        $usuario->Direccion=$request->Direccion;
-        $usuario->Barrio=$request->Barrio;
-        $usuario->Ciudad=$request->Ciudad;
         $usuario->save();
         return Redirect::route("usuarios.index");
     }

@@ -14,7 +14,7 @@
         @foreach ($productos as $producto)
             <div class="card m-3 productos" style="width: 18rem;">
                 <div class="card-body">
-                    <form method="POST" action="{{route('cart.store', $producto)}}">
+                    <form method="POST" action="{{route('cart.store')}}">
                         @csrf
                         <input type="text" name="id" class="form-control" id="id" value="{{ $producto->id }}" hidden>
                         <img src="/images/{{ $producto->Imagen }}" alt="{{ $producto->Nombre }}" class="w-100">

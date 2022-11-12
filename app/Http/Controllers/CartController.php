@@ -48,10 +48,12 @@ class CartController extends Controller
     //     return back();
     // }
 
-    public function store(Request $request, Productos $producto)
+    public function store(Request $request)
 {
     $precios = Precio::find($request->price);
-    
+    $Stock = Productos::find($request->id)->Stock;
+    Productos::where('id', '=', $request->id)
+                ->update(['Stock' => $Stock - $request->quantity]);
     Cart::add(array(
         'id' => $request->id.'s'.$precios->Size,
         'name' => $request->name,
@@ -103,7 +105,12 @@ class CartController extends Controller
      */
     public function destroy($cart)
     {
+        $elemento = Cart::get($cart);
+        $id = explode('s', $elemento->id)[0];
         Cart::remove($cart);
+        $Stock = Productos::find($id)->Stock;
+        Productos::where('id', '=', $id)
+                ->update(['Stock' => $Stock + $elemento->quantity]);
         return back();
     }
 }

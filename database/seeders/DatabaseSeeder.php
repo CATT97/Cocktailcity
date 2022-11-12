@@ -22,10 +22,6 @@ class DatabaseSeeder extends Seeder
             'TipoDocumento' => 'CC',
             'NumeroDocumento' => '1035234370',
             'NumeroContacto' => '3008108926',
-            'Genero' => 'Masculino',
-            'Direccion' => 'calle 15b # 9 - 35',
-            'Barrio' => 'La ceniza',
-            'Ciudad' => 'Manizales',
             'Perfil' => 'Administrador',
             'Activo' => TRUE
         ]);
