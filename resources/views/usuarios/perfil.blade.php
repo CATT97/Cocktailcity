@@ -54,6 +54,7 @@
                                 <a type="button" class="btn btn-primary" href="{{ url('/perfil/editar', Auth::user()) }}">
                                     {{ __('Editar') }}
                                 </a>
+                                <a type="button" href="{{ route('direcciones.index') }}" class="btn btn-secondary">Gestionar direcciones</a>
                             </div>
                         </div>
                 </div>

@@ -13,4 +13,9 @@ class Compra extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function Direccion()
+    {
+        return $this->belongsTo(Direccion::class);
+    }
 }

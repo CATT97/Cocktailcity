@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compra;
+use App\Models\Direccion;
 use App\Models\Productos;
 use App\Models\ProductosCompra;
 use App\Models\User;
@@ -21,6 +22,7 @@ class CompraController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('perfil');
     }
 
     /**
@@ -31,7 +33,9 @@ class CompraController extends Controller
     public function index()
     {
         $productos = Productos::all();
-        return view('compras.index', compact('productos'));
+        $direcciones = Direccion::where('User_id', '=', auth()->id())->paginate(3);
+        $user = User::find(auth()->id());
+        return view('compras.index', compact('productos', 'direcciones', 'user'));
     }
 
     /**
@@ -41,6 +45,17 @@ class CompraController extends Controller
      */
     public function create()
     {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $compra = new Compra();
         $compra->FechaHora = now();
         $compra->ValorTotal = CartFacade::getTotal();
@@ -48,6 +63,7 @@ class CompraController extends Controller
         if (User::find(auth()->id())->Perfil == 'Cliente') {
             $compra->Estado = 'Pedido Generado';
             $compra->MedioCompra = 'Web';
+            $compra->Direccion_id = $request->direccion;
         }else{
             $compra->Estado = 'Finalizado';
             $compra->MedioCompra = 'Local';
@@ -69,17 +85,6 @@ class CompraController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store()
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Compra  $compra
@@ -90,7 +95,8 @@ class CompraController extends Controller
         $usuario = User::find($compra->User_id);
         $productoscompras = ProductosCompra::where('Compra_id', '=', $compra->id)->get();
         $productos = Productos::all();
-        return view('compras.show', compact('compra', 'productoscompras', 'productos', 'usuario'));
+        $direccion = Direccion::find($compra->Direccion_id);
+        return view('compras.show', compact('compra', 'productoscompras', 'productos', 'usuario', 'direccion'));
     }
 
     /**

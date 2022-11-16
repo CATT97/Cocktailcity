@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Direccion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class DireccionController extends Controller
 {
@@ -14,7 +15,8 @@ class DireccionController extends Controller
      */
     public function index()
     {
-        //
+        $direcciones = Direccion::where('User_id', '=', auth()->id())->paginate(10);
+        return view('direcciones.index', compact('direcciones'));
     }
 
     /**
@@ -24,7 +26,7 @@ class DireccionController extends Controller
      */
     public function create()
     {
-        //
+        return view('direcciones.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class DireccionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $direccion = new Direccion();
+        $direccion->Direccion = $request->direccion;
+        $direccion->Barrio = $request->barrio;
+        $direccion->Ciudad = $request->ciudad;
+        $direccion->User_id = auth()->id();
+        $direccion->save();
+        return Redirect::route('direcciones.index');
     }
 
     /**
@@ -55,9 +63,9 @@ class DireccionController extends Controller
      * @param  \App\Models\Direccion  $direccion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Direccion $direccion)
+    public function edit(Direccion $direccione)
     {
-        //
+        return view('direcciones.edit', compact('direccione'));
     }
 
     /**
@@ -67,9 +75,13 @@ class DireccionController extends Controller
      * @param  \App\Models\Direccion  $direccion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Direccion $direccion)
+    public function update(Request $request, Direccion $direccione)
     {
-        //
+        $direccione->Direccion = $request->direccion;
+        $direccione->Barrio = $request->barrio;
+        $direccione->Ciudad = $request->ciudad;
+        $direccione->save();
+        return Redirect::route('direcciones.index');
     }
 
     /**
@@ -78,8 +90,9 @@ class DireccionController extends Controller
      * @param  \App\Models\Direccion  $direccion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Direccion $direccion)
+    public function destroy(Direccion $direccione)
     {
-        //
+        $direccione->delete();
+        return Redirect::route('direcciones.index');
     }
 }

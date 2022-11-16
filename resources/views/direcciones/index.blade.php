@@ -2,31 +2,21 @@
 
 @section('content')
     <div class="text-center">
-        <h1>Gestión de Usuarios</h1>
+        <h1>Gestión de Direcciones</h1>
         <hr>
     </div>
     <div class="d-flex justify-content-center">
-        <form action="{{ route('usuarios.index') }}" method="get" class="d-flex">
-            <label for="busqueda" class="col-form-label fs-5">Filtro</label>
-            <input type="text" class="form-control mx-3" name="busqueda" value="{{ $busqueda }}" placeholder="Nombre o Documento">
-            <input type="submit" class="btn btn-success" value="Buscar">
-        </form>
-        <form action="{{ route('usuarios.index') }}" method="get" class="d-flex">
-            <input type="submit" class="btn btn-secondary mx-3" value="Limpiar">
-        </form>
-        <a type="button" class="btn btn-primary" href="{{ route('usuarios.create') }}">Añadir</a>
+        <a type="button" class="btn btn-primary" href="{{ route('direcciones.create') }}">Añadir</a>
     </div>
     <div class="mx-5 mt-5 row justify-content-center">
-        @foreach ($usuarios as $usuario)
+        @foreach ($direcciones as $direccion)
             <div class="card m-3" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $usuario->name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ $usuario->Perfil }}</h6>
-                    <p class="card-text">{{ $usuario->email }}</p>
-                    <p class="card-text">{{ $usuario->TipoDocumento }}: {{ $usuario->NumeroDocumento }}</p>
-                    <p class="card-text">Tel: {{ $usuario->NumeroContacto }}</p>
+                    <h5 class="card-title">{{ $direccion->Direccion }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ $direccion->Barrio }}</h6>
+                    <p class="card-text">{{ $direccion->Ciudad }}</p>
                     <div class="justify-content-center d-flex">
-                        <a href="{{ route('usuarios.edit', $usuario) }}" type="button" class="btn btn-warning mx-2">
+                        <a href="{{ route('direcciones.edit', $direccion) }}" type="button" class="btn btn-warning mx-2">
                             Editar
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -37,7 +27,7 @@
                             </svg>
                         </a>
                         <div>
-                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUsuario{{ $usuario->id }}">
+                            <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminardireccion{{ $direccion->id }}">
                                 Eliminar
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-person-x" viewBox="0 0 16 16">
@@ -48,22 +38,22 @@
                                 </svg>
                             </button>
                             <!-- Modal -->
-                            <div class="modal fade" id="eliminarUsuario{{ $usuario->id }}" tabindex="-1" 
-                                aria-labelledby="eliminarUsuario{{ $usuario->id }}Label" aria-hidden="true">
+                            <div class="modal fade" id="eliminardireccion{{ $direccion->id }}" tabindex="-1" 
+                                aria-labelledby="eliminardireccion{{ $direccion->id }}Label" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="eliminarUsuario{{ $usuario->id }}
+                                            <h5 class="modal-title" id="eliminardireccion{{ $direccion->id }}
                                                 Label">Confirmación</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Esta seguro de que desea eliminar este usuario?
+                                            Esta seguro de que desea eliminar esta direccion?
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                            <form action="{{ route('usuarios.destroy', $usuario) }}" method="post" class="mx-2">
+                                            <form action="{{ route('direcciones.destroy', $direccion) }}" method="post" class="mx-2">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger">
@@ -80,7 +70,7 @@
             </div>
         @endforeach
         <div class="d-flex justify-content-center">
-            {{ $usuarios->links() }}
+            {{ $direcciones->links() }}
         </div>
     </div>
 @endsection

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\CompraUsuarioController;
+use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\PrecioController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
@@ -53,3 +54,5 @@ Route::get('/perfil/editar/{usuario}', function (User $usuario) {
     return view('usuarios.editarperfil', compact('usuario'));
 });
 Route::put('/perfil/actualizar/{usuario}', [App\Http\Controllers\PerfilControler::class, 'update'])->name('perfil.update');
+
+Route::resource('/direcciones', DireccionController::class);

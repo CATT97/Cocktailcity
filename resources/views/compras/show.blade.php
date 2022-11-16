@@ -69,15 +69,20 @@
                 </tr>
                 <tr>
                     <th>Dirección:</th>
-                    <td>{{ $usuario->Direccion }} {{ $usuario->Barrio }}</td>
+                    <td>{{ $direccion->Direccion }}</td>
+                </tr>
+                <tr>
+                    <th>Barrio:</th>
+                    <td>{{ $direccion->Barrio }}</td>
+                </tr>
+                <tr>
+                    <th>Ciudad:</th>
+                    <td>{{ $direccion->Ciudad }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
 @endif
-{{-- <div class="text-center">
-    <button type="button" class="btn btn-primary" onclick="history.back()">Volver</button>
-</div> --}}
 
 @endsection

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('FechaHora');
             $table->float('ValorTotal');
             $table->foreignId('User_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('Direccion_id')->nullable();
             $table->String('Estado');
             $table->string('MedioCompra');
             $table->timestamps();
